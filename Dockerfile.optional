@@ -1,0 +1,15 @@
+ARG VERSION  
+
+FROM abesnier/php-fpm:grav-${VERSION}
+
+RUN apt-get update \
+ && apt-get upgrade -y \
+ && apt-get install -y libyaml-dev \
+ && pecl install \
+       apcu \ 
+       yaml \
+       xdebug \
+ && docker-php-ext-enable \
+       apcu \
+       yaml \
+       xdebug 

@@ -1,0 +1,7 @@
+FROM abesnier/php-fpm:grav-alpine
+
+RUN apk add --update --no-cache yaml-dev \
+&& apk add --update --no-cache --virtual .build-dependencies $PHPIZE_DEPS linux-headers\
+&& pecl install apcu yaml xdebug\
+&& docker-php-ext-enable apcu yaml xdebug opcache\
+&& apk del .build-dependencies linux-headers

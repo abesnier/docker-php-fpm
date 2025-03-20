@@ -1,0 +1,12 @@
+ARG VERSION
+
+FROM php:${VERSION}-fpm-alpine
+
+RUN apk add --update --no-cache \
+    freetype-dev \
+    jpeg-dev \
+    libpng-dev \
+    libzip-dev \
+    && docker-php-ext-configure zip                            && docker-php-ext-install -j$(nproc) zip \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg && docker-php-ext-install -j$(nproc) gd
+    

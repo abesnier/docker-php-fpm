@@ -1,0 +1,24 @@
+#!/bin/bash
+
+RED='\033[0;31m'
+NC='\033[0m'
+GREEN='\033[0;32m'
+
+docker buildx bake --provenance=false --push  bases
+
+if [ $? -eq 0 ] 
+then
+  echo -e "${GREEN}Base image build succeeded${NC}"
+  docker buildx bake --provenance=false --push  optional
+  if [ $? -eq 0 ] 
+    then
+      echo -e "${GREEN}Base image and Optional image build succeeded${NC}"
+      exit 0
+    else
+	  echo -e "${RED}Optional image build failed${NC}"
+	  exit 1
+  fi   
+else
+  echo -e "${RED}Base image build failed${NC}"
+  exit 1
+fi
