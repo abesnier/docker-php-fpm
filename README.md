@@ -1,5 +1,5 @@
 # PHP-FPM Docker Image
-PHP-FPM with [modules required by GravCMS](https://learn.getgrav.org/17/basics/requirements#php-requirements) not in default php-fpm image:
+PHP-FPM with [modules required by GravCMS](https://learn.getgrav.org/17/basics/requirements#php-requirements) not in default php-fpm image (the other required modules are enabled by default):
 - zip 
 - gd
 
