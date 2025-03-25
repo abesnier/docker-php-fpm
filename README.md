@@ -29,3 +29,12 @@ If you need to customize these modules, or need more standard php modules, you'l
 `grav-alpine` : Latest php 8.4 fpm, Alpine base
 
 `grav-alpine-optional` : Latest php 8.4 fpm, Alpine base, with optional modules installed and enabled
+
+# How to use
+
+Just pull the image and if required, mount a docker volume to point to a custom php.ini.
+
+If needed, there is a docker-compose example for a joint nginx/php application in the [example](https://www.github.com/abesnier/docker-php-fpm/example/) directory.
+
+# License
+I know everything is open source, and the most used licenses should by GPL or MIT, but I don't have the details for each...

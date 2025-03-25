@@ -1,0 +1,50 @@
+# This example uses Nginx Proxy Manager (NPM) as a reverse proxy, hence the use of the docker network 'npm_default'.
+# Using NPM also take scare of the SSL certificates with Let's encrypt, that's why you will not see any ssl definition
+# in the nginx configuration file. This is my prefered way to manage reverse proxies and certificates, but if you
+# decide not to use NPM, then you'll need to define your ssl configuration in default.template.conf, and make your
+# certificates availables to the nginx container.
+
+name: example.org_web
+services:
+    web:
+        image: nginx:alpine
+        container_name: example.org_web
+        volumes:
+            - "./etc/nginx/default.conf:/etc/nginx/conf.d/default.conf"
+            - "./etc/nginx/default.template.conf:/etc/nginx/conf.d/default.template"
+            - "./etc/nginx/logs:/var/log/nginx"
+
+            # General / public (default landing page)
+            - "./www:/var/www"
+        environment:
+            - NGINX_HOST=${NGINX_HOST}
+            - TZ=${TZ}
+        command: /bin/sh -c "envsubst '$$NGINX_HOST' < /etc/nginx/conf.d/default.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+        restart: always
+        networks:
+            - npm_default
+        depends_on:
+            - php
+
+    php:
+        image: abesnier/php-fpm:grav-84-optional # or any other tag, as per your needs
+        restart: always
+        container_name: example.org_php
+        environment:
+            - TZ=${TZ}
+            - HOSTNAME=${HOSTNAME}
+        user: 33:33
+        networks:
+            - npm_default
+        ports:
+            - 9000
+        volumes:
+            - "./etc/php/php.ini:/usr/local/etc/php/conf.d/php.ini"
+            - "./www:/var/www"
+            - "/etc/timezone:/etc/timezone:ro"
+            - "/etc/localtime:/etc/localtime:ro"
+
+networks:
+  npm_default:
+    name: nginxproxymanager_default
+    external: true
