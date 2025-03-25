@@ -34,7 +34,7 @@ If you need to customize these modules, or need more standard php modules, you'l
 
 Just pull the image and if required, mount a docker volume to point to a custom php.ini.
 
-If needed, there is a docker-compose example for a joint nginx/php application in the [example](https://www.github.com/abesnier/docker-php-fpm/example/) directory.
+If needed, there is a docker-compose example for a joint nginx/php application in the [example](https://github.com/abesnier/docker-php-fpm/tree/master/example) directory.
 
 # License
 I know everything is open source, and the most used licenses should by GPL or MIT, but I don't have the details for each...
