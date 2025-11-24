@@ -9,7 +9,9 @@ docker buildx bake --provenance=false --push  bases
 if [ $? -eq 0 ]
 then
   echo -e "${GREEN}Base image build succeeded${NC}"
-  docker buildx bake --provenance=false --push  optional
+  # split optional builds in two steps as to reduce CPU load and prevent docker-php-ext-enable timeout
+  docker buildx bake --provenance=false --push optional1
+  docker buildx bake --provenance=false --push optional2
   if [ $? -eq 0 ]
     then
       echo -e "${GREEN}Base image and Optional image build succeeded${NC}"

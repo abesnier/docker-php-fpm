@@ -9,11 +9,16 @@ group "bases" {
             ]
 }
 
-group "optional" {
+group "optional1" {
   targets = [
                "php-fpm-grav-81-optional",
                "php-fpm-grav-82-optional",
-               "php-fpm-grav-83-optional",
+               "php-fpm-grav-83-optional"
+            ]
+}
+
+group "optional2" {
+  targets = [
                "php-fpm-grav-84-optional",
                "php-fpm-grav-85-optional",
                "php-fpm-alpine-optional"
@@ -99,6 +104,6 @@ target "php-fpm-alpine" {
 
 target "php-fpm-alpine-optional" {
   dockerfile = "Dockerfile.optional.alpine"
-  platforms = ["linux/386","linux/amd64","linux/arm/v7","linux/arm64/v8"]
+  platforms = ["linux/amd64","linux/arm64/v8"]
   tags = ["abesnier/php-fpm:grav-alpine-optional"]
 }
