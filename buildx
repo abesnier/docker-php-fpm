@@ -6,19 +6,22 @@ GREEN='\033[0;32m'
 
 docker buildx bake --provenance=false --push  bases
 
-if [ $? -eq 0 ] 
+if [ $? -eq 0 ]
 then
   echo -e "${GREEN}Base image build succeeded${NC}"
   docker buildx bake --provenance=false --push  optional
-  if [ $? -eq 0 ] 
+  if [ $? -eq 0 ]
     then
       echo -e "${GREEN}Base image and Optional image build succeeded${NC}"
+#      docker-prune
       exit 0
     else
 	  echo -e "${RED}Optional image build failed${NC}"
+#          docker-prune
 	  exit 1
-  fi   
+  fi
 else
   echo -e "${RED}Base image build failed${NC}"
+#  docker-prune
   exit 1
 fi

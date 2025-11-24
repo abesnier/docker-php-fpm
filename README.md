@@ -1,5 +1,5 @@
 # PHP-FPM Docker Image
-PHP-FPM with [modules required by GravCMS](https://learn.getgrav.org/17/basics/requirements#php-requirements) not in default php-fpm image (the other required modules are enabled by default):
+PHP-FPM with [Composer](https://getcomposer.org/) and  [modules required by GravCMS](https://learn.getgrav.org/17/basics/requirements#php-requirements) not in default php-fpm image (the other required modules are enabled by default):
 - zip 
 - gd
 
@@ -20,11 +20,15 @@ If you need to customize these modules, or need more standard php modules, you'l
 
 `grav-8.4` : Latest php 8.4 fpm 
 
+`grav-8.5` : Latest php 8.5 fpm
+
 `grav-8.2-optional` : Latest php 8.3 fpm with optional modules installed and enabled 
 
 `grav-8.3-optional` : Latest php 8.3 fpm with optional modules installed and enabled 
 
 `grav-8.4-optional` : Latest php 8.4 fpm with optional modules installed and enabled 
+
+`grav-8.5-optional` : Latest php 8.5 fpm with optional modules installed and enabled
 
 `grav-alpine` : Latest php 8.4 fpm, Alpine base
 

@@ -1,5 +1,5 @@
 # This example uses Nginx Proxy Manager (NPM) as a reverse proxy, hence the use of the docker network 'npm_default'.
-# Using NPM also take scare of the SSL certificates with Let's encrypt, that's why you will not see any ssl definition
+# Using NPM also takes care of the SSL certificates with Let's encrypt, that's why you will not see any ssl definition
 # in the nginx configuration file. This is my prefered way to manage reverse proxies and certificates, but if you
 # decide not to use NPM, then you'll need to define your ssl configuration in default.template.conf, and make your
 # certificates availables to the nginx container.

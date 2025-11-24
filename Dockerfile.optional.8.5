@@ -1,4 +1,4 @@
-ARG VERSION  
+ARG VERSION
 
 FROM abesnier/php-fpm:grav-${VERSION}
 
@@ -7,10 +7,10 @@ COPY --from=ghcr.io/php/pie:bin /pie /usr/bin/pie
 RUN apt-get update \
  && apt-get upgrade -y \
  && apt-get install -y libyaml-dev \
- && pie install apcu/apcu \ 
+ && pie install apcu/apcu \
  && pie install pecl/yaml \
- && pie install xdebug/xdebug \
+ && pie install xdebug/xdebug:3.5.0alpha3 \
  && docker-php-ext-enable \
        apcu \
        yaml \
-       xdebug 
+       xdebug
